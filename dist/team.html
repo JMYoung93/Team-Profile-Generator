@@ -1,115 +1,4 @@
-const makeTeam = teamArray => {
 
-    const makeManager = manager => {
-        return `
-        <!--Card for the Manager Information-->
-
-<div class="card hovercard">
-    <div class="cardheader">
-        <div class="card-heading">
-            ${manager.name}
-        </div>
-
-        <div class="role">
-            <img src="../dist/images/manager.jpg"></img>
-            <h1>Manager</h1>
-        </div>
-    </div>
-    <div class="card-body">
-        <div class="desc">
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">ID: ${manager.id}</li>
-                <li class="list-group-item">Email: ${manager.email}</li>
-                <li class="list-group-item">Office: ${manager.officeNumber}</li>
-            </ul>
-        </div>
-    </div>
-</div>  
-        `
-    }
-
-    const makeIntern = intern => {
-        return `
-        <!--Card for intern information-->
-
-        <div class="card hovercard">
-            <div class="cardheader">
-                <div class="card-heading">
-                    ${intern.name}
-                </div>
-        
-                <div class="role">
-                    <img src="../dist/images/intern.jpg"></img>
-                   <h1>Intern</h1>
-                </div>
-            </div>
-            <div class="card-body">
-                <div class="desc">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">ID: ${intern.id}</li>
-                        <li class="list-group-item">Email: ${intern.email}</li>
-                        <li class="list-group-item">School: ${intern.school}</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        
-        `
-    }
-
-    const makeEngineer = engineer1 => {
-        return `
-        <!--Card for intern information-->
-
-        <div class="card hovercard">
-            <div class="cardheader">
-                <div class="card-heading">
-                   ${engineer1.name}
-                </div>
-        
-                <div class="role">
-                    <img src="../dist/images/engineer.png"></img>
-                   <h1>Engineer</h1>
-                </div>
-            </div>
-            <div class="card-body">
-                <div class="desc">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">ID: ${engineer1.id}</li>
-                        <li class="list-group-item">Email: ${engineer1.email}</li>
-                        <li class="list-group-item">School: ${engineer1.github}</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        
-        `
-    };
-    const mapping = [];
-
-    mapping.push(teamArray
-        .filter(employee => employee.getRole() === "Manager")
-        .map(manager => makeManager(manager)));
-    mapping.push(teamArray
-        .filter(employee => employee.getRole() === "Intern")
-        .map(intern => makeIntern(intern)));
-        mapping.push(teamArray
-            .filter(employee => employee.getRole() === "Engineer")
-            .map(engineer => makeEngineer(engineer)));
-    
-    return mapping.join('')
-
-}
-
-
-
-
-
-
-
-
-module.exports = teamArray => {
-    return `
 <!DOCTYPE html>
 <html>
 
@@ -127,7 +16,81 @@ module.exports = teamArray => {
     <!--Container contains cards that hold employee information-->
     <div class="container">
 
-        ${makeTeam(teamArray)}
+        
+        <!--Card for the Manager Information-->
+
+<div class="card hovercard">
+    <div class="cardheader">
+        <div class="card-heading">
+            Jeff
+        </div>
+
+        <div class="role">
+            <img src="../dist/images/manager.jpg"></img>
+            <h1>Manager</h1>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="desc">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">ID: 2233</li>
+                <li class="list-group-item">Email: something@something.com</li>
+                <li class="list-group-item">Office: 555-555-5555</li>
+            </ul>
+        </div>
+    </div>
+</div>  
+        
+        <!--Card for intern information-->
+
+        <div class="card hovercard">
+            <div class="cardheader">
+                <div class="card-heading">
+                    James
+                </div>
+        
+                <div class="role">
+                    <img src="../dist/images/intern.jpg"></img>
+                   <h1>Intern</h1>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="desc">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">ID: 4343</li>
+                        <li class="list-group-item">Email: somethingelse@something.com</li>
+                        <li class="list-group-item">School: UCSD</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        
+        <!--Card for intern information-->
+
+        <div class="card hovercard">
+            <div class="cardheader">
+                <div class="card-heading">
+                   Jessie
+                </div>
+        
+                <div class="role">
+                    <img src="../dist/images/engineer.png"></img>
+                   <h1>Engineer</h1>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="desc">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">ID: 5466</li>
+                        <li class="list-group-item">Email: example@example.com</li>
+                        <li class="list-group-item">School: something@github.com</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        
 
     </div>
 
@@ -147,7 +110,4 @@ module.exports = teamArray => {
 </html>
 
 
-    `
-}
-
-
+    

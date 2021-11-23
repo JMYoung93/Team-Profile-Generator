@@ -88,7 +88,6 @@ function newEmployeeData(){
             name: "newEmployee",
             message: "Would you like to add another member to your team?"
         },
-        console.log(teamMembers)
     ]).then(answers => {
 
         if (answers.employeeRole === "Intern") {
@@ -101,7 +100,7 @@ function newEmployeeData(){
             console.log(engineer1)
         }
         if (answers.newEmployee === true) {
-          
+          newEmployeeData()
         }
         else {
             //==================
