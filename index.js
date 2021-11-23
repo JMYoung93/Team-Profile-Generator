@@ -39,9 +39,10 @@ function managerData(){
             message: "What is the manager's office number?"
         }]).then(managerAnswers => {
             manager = new Manager(managerAnswers.managerName, managerAnswers.managerId, managerAnswers.managerEmail, managerAnswers.officeNumber);
+            teamMembers.push(manager)
             console.log('Next we will get employee information.')
             newEmployeeData()
-            
+            console.log(teamMembers)
         })
     
 };
@@ -86,15 +87,18 @@ function newEmployeeData(){
             type: "confirm",
             name: "newEmployee",
             message: "Would you like to add another member to your team?"
-        }
+        },
+        console.log(teamMembers)
     ]).then(answers => {
 
         if (answers.employeeRole === "Intern") {
-            const employee = new Intern(answers.employeeName, answers.employeeId, answers.employeeEmail, answers.school);
+             employee = new Intern(answers.employeeName, answers.employeeId, answers.employeeEmail, answers.school);
             teamMembers.push(employee);
+            console.log(employee)
         } else if (answers.employeeRole === "Engineer") {
-            // A different way of pushing the info into teamMembers array.
-            teamMembers.push(new Engineer(answers.employeeName, answers.employeeId, answers.employeeEmail, answers.github));
+            engineer1 = new Engineer(answers.employeeName, answers.employeeId, answers.employeeEmail, answers.github);
+            teamMembers.push(engineer1)
+            console.log(engineer1)
         }
         if (answers.newEmployee === true) {
           

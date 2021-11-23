@@ -57,27 +57,27 @@ const makeTeam = teamArray => {
         `
     }
 
-    const makeEngineer = engineer => {
+    const makeEngineer = engineer1 => {
         return `
         <!--Card for intern information-->
 
         <div class="card hovercard">
             <div class="cardheader">
                 <div class="card-heading">
-                    ${engineer.name}
+                    ${engineer1.name}
                 </div>
         
                 <div class="role">
                     <img src="../images/Intern.ico"></img>
-                    ${engineer.role}
+                    ${engineer1.role}
                 </div>
             </div>
             <div class="card-body">
                 <div class="desc">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">ID: ${engineer.id}</li>
-                        <li class="list-group-item">Email: ${engineer.email}</li>
-                        <li class="list-group-item">School: ${engineer.school}</li>
+                        <li class="list-group-item">ID: ${engineer1.id}</li>
+                        <li class="list-group-item">Email: ${engineer1.email}</li>
+                        <li class="list-group-item">School: ${engineer1.school}</li>
                     </ul>
                 </div>
             </div>
