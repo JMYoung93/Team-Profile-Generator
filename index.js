@@ -1,16 +1,21 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
+const path = require("path");
 
-const Engineer = require('./lib/Engineer')
-const Intern = require('./lib/Intern')
+const Engineer = require('./lib/Engineer');
+const Intern = require('./lib/Intern');
 const Manager = require('./lib/Manager');
+
+const DIST_DIR = path.resolve(__dirname, 'dist');
+const distPath = path.join(DIST_DIR, 'team.html');
+
+const render = require('./templates/main.js');
 
 const teamMembers = [];
 
 let manager;
 
-let teamTitle;
-
+function appWrap() {
 function managerData(){
     inquirer.prompt([
         {
@@ -33,10 +38,14 @@ function managerData(){
             name: "officeNumber",
             message: "What is the manager's office number?"
         }]).then(managerAnswers => {
-            manager = new Manager(managerAnswers.managerName, managerAnswers.managerID, managerAnswers.managerEmail, managerAnswers.officeNumber);
+            manager = new Manager(managerAnswers.managerName, managerAnswers.managerId, managerAnswers.managerEmail, managerAnswers.officeNumber);
             console.log('Next we will get employee information.')
+            newEmployeeData()
+            
         })
+    
 };
+
 
 function newEmployeeData(){
     inquirer.prompt([
@@ -88,45 +97,26 @@ function newEmployeeData(){
             teamMembers.push(new Engineer(answers.employeeName, answers.employeeId, answers.employeeEmail, answers.github));
         }
         if (answers.newEmployee === true) {
-            lesserEmployeeData();
+          
         }
         else {
             //==================
             //renderHTML
             //==================
-
-            var main = fs.readFileSync('./templates/main.html', 'utf8');
-            // The slashes and g => regular expressions (regex)
-            // This allows the replace function to replace all occurances of teamTitle.
-            // If I just did '{{teamTitle}}' then it only replaces the first instance.
-            main = main.replace(/{{teamTitle}}/g, teamTitle);
-
-            // Loop through the employees and print out all of their cards without replacing the previous one.
-            var managerCard = fs.readFileSync('./templates/Manager.html', 'utf8');
-            managerCard = managerCard.replace('{{name}}', manager.getName());
-            managerCard = managerCard.replace('{{role}}', manager.getRole());
-            managerCard = managerCard.replace('{{id}}', manager.getId());
-            managerCard = managerCard.replace('{{email}}', manager.getEmail());
-            managerCard = managerCard.replace('{{officeNumber}}', manager.getOfficeNumber());
-
-            //=====================================================
-            // Append all of the team members after manager
-            //=====================================================
-
-            var cards = managerCard; // Initial cards only has the Manager card info.
-            for (var i = 0; i < teamMembers.length; i++) {
-                var employee = teamMembers[i];
-                // Cards adds and then equals every new employee card info.
-                cards += renderEmployee(employee);
-            }
-
-            // Adds cards to main.html and outputs to team.html.
-            main = main.replace('{{cards}}', cards);
-
-            fs.writeFileSync('./output/team.html', main);
-
-            // Console.log that the html has been generated
-            console.log("The team.html has been generated in output");
-        }
-    });
+     
+            buildTeam()
+        
+        }})
+       function buildTeam() {
+                // Create the output directory if the dist path doesn't exist
+                if (!fs.existsSync(DIST_DIR)) {
+                  fs.mkdirSync(DIST_DIR);
+                }
+                fs.writeFileSync(distPath, render(teamMembers), 'utf-8');
+              }
+  
 }
+managerData();
+}
+
+appWrap();
