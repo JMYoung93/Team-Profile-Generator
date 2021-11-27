@@ -42,7 +42,6 @@ function managerData(){
             teamMembers.push(manager)
             console.log('Next we will get employee information.')
             newEmployeeData()
-            console.log(teamMembers)
         })
     
 };
@@ -97,7 +96,6 @@ function newEmployeeData(){
         } else if (answers.employeeRole === "Engineer") {
             engineer1 = new Engineer(answers.employeeName, answers.employeeId, answers.employeeEmail, answers.github);
             teamMembers.push(engineer1)
-            console.log(engineer1)
         }
         if (answers.newEmployee === true) {
           newEmployeeData()

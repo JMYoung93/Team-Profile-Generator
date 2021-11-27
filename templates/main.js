@@ -77,7 +77,7 @@ const makeTeam = teamArray => {
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">ID: ${engineer1.id}</li>
                         <li class="list-group-item">Email: ${engineer1.email}</li>
-                        <li class="list-group-item">School: ${engineer1.github}</li>
+                        <li class="list-group-item">Github: ${engineer1.github}</li>
                     </ul>
                 </div>
             </div>
